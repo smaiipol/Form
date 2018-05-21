@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="js/jquery.min.js"></script>
+</head>
+<body>
+	<form id="form1">
+		<input type="text" placeholder="Name" name="name" />
+		<input type="tel" placeholder="Phone Number" name="phone" />
+		<input type="email" placeholder="Email" name="email" />
+		<input type="text" placeholder="Suburb" name="suburb" />
+		<input type="text" placeholder="Service Required" name="service_required" />
+		<input type="submit" class="submit" value="Get your same day quote now" id="submitbtn1" />
+		<div id="result1"></div>
+	</form>
+	<script>
+		jQuery("#submitbtn1").click(function() {
+			var input_data = jQuery('#form1').serialize();
+			jQuery.ajax({
+			type: "POST",
+			url:  "form/form.php",
+			data: input_data,
+			success: function(msg){
+				jQuery('div#result1').html(msg).hide().fadeIn('slow');
+			}
+			});
+			return false;
+		});
+	</script>
+</body>
+</html>
